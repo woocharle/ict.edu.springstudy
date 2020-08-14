@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Spring container에게 정보를 제공하는 설정정보파일.
+		객체(Bean)를 생성하고 주입하는 일을 한다. -->
+	
+	<!-- 객체 생성방법 -->
+	<bean id="oracle" class="com.ict.edu02.OracleDAO" />
+	<bean id="maria" class="com.ict.edu02.MariaDAO" />
+	
+	<!-- 실행할 서비스 클래스도 만들자. -->
+	<!-- 의존성주입(DI): 위에서 생성한 bean을 setter나 생성자로 객체에  클라스를 넣어주는 것. -->
+	<bean id="service" class="com.ict.edu02.Service">
+		<!-- <property name="dao" ref="maria" ></property> --> <!--Setter 역할을 한다.  -->
+		<!-- 생성자를 이용 -->
+		<constructor-arg name="dao" ref="oracle" />
+
+	</bean>
+	
+</beans>
