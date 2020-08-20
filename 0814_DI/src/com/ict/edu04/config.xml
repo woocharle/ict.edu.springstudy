@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="array" class="com.ict.edu04.Array">
+		<property name="arr1" >
+			<list>
+				<value>1000</value>
+				<value>2000</value>
+				<value>3000</value>
+				<value>4000</value>
+			</list>
+		</property>
+		<property name="arr2" >
+			<list>
+				<value>1000</value>
+				<value>2000</value>
+				<value>3000</value>
+				<value>4000</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="map" class="com.ict.edu04.Mapprint">
+	
+		<property name="map1">
+			<map>
+				<entry key="id" value="kkkk"></entry>
+				<entry key="pw" value="k1212"></entry>
+				<entry key="name" value="희동이"></entry>
+				<entry key="age" value="20"></entry>
+				<entry key="addr" value="서울"></entry>
+			</map>
+		</property>
+		
+		<property name="map2">
+			<map>
+				<entry key="1001" value="dddd"></entry>
+				<entry key="1005" value="d1212"></entry>
+				<entry key="1007" value="둘리"></entry>
+				<entry key="1009" value="28"></entry>
+				<entry key="1010" value="서울"></entry>
+			</map>
+		</property>
+	</bean> 
+
+	<bean id="sp" class="com.ict.edu04.SetPrint">
+		<property name="set1">
+			<set>
+				<value>100</value>
+				<value>200</value>
+				<value>300</value>
+				<value>400</value>
+				<value>500</value>
+			</set>
+		</property>	
+		
+		<property name="set2">
+			<set>
+				<value>10010</value>
+				<value>20010</value>
+				<value>30010</value>
+				<value>40010</value>
+				<value>50010</value>
+			</set>
+		</property>	
+		
+	</bean>
+
+</beans>

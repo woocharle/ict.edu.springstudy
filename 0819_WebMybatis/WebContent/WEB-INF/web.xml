@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+		 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>0818_WebJDBC</display-name>
+ 	<!--applicationContext.xml 파일 위치나 이름 변경할 때 사용  -->
+
+ 
+ 	<!-- 리스너 설정 java에서 붙인다.-->
+ 	<listener>
+ 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+ 	</listener>
+</web-app>

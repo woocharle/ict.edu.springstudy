@@ -9,6 +9,8 @@
 	<configs>
 		<config>src/com/ict/edu02/config.xml</config>
 		<config>src/com/ict/edu03/config.xml</config>
+		<config>src/com/ict/edu04/config.xml</config>
+		<config>src/com/ict/edu05/config.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

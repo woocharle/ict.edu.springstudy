@@ -19,18 +19,16 @@ help -> marketplace에서 검색 [검색창에 spring]  -> install 클릭 -> 설
 (2) 라이브러리 받기
 
    https://mvnrepository.com/
-   검색창에 spring-context 적고 검색
-   소스코드 보기
-
-   오류가 나면 버전을 낮춘다.
-
+   검색창에 spring-context(java), spring-web(web) 적고 검색 소스코드를 복사해서 
+    pom.xml의 <dependencies> [여기] </dependencies> 사이에 붙여넣기 할 것.
+  
 (3) lib는 오라클만.
 
 (4) .m2 지우고 다시작동 https://dltjdgur327.tistory.com/26, https://parkpurong.tistory.com/133 참고
 
 
 
-1. 이론
+1. Intro
 
    (1) IoC (Inversion of Control)
 
@@ -101,4 +99,84 @@ help -> marketplace에서 검색 [검색창에 spring]  -> install 클릭 -> 설
 	</bean>
 
 	2) 생성자 이용
+		<bean id="process" class="com.ict.edu03.MyProcess">
+		<constructor-arg name="age" value="3"></constructor-arg>
+		<constructor-arg name="name" value="희동이"></constructor-arg>	
+	</bean>
+
+        3) 배열처리
+
+
+   (2) 애노테이션
+
+	1) 정의: 설정 정보를 기본적으로 xml로 작성하지만 자바코드에 직접 설정해서 코딩을 좀 더 쉽게 하는 
+		방법을 얘기한다. 애노테이션은 자바코드에 주석을 달아 특별한 의미를 부여하는 것
+	
+	2) Spring 애노테이션의 종류
+		 
+	   @Component: 클래스에서 config의 bean 인스턴스를 생성한다.
+		       
+		       class에서 @Component([아이디])는 config에서 <bean id=[아이디] ..../>와 동일
+			
+	   @Controller, @Service @Repository
+		 => 클래스에 대해서 bean 인스턴스를 생성.
+		 @Component를 좀 더 구체화 해서 나타낸것.
+		 @Sevice => 비즈니스로직(모델)로 주로 사용.
+		 @Repository => 데이터베이스에 연동처리하는 DAO에 주로 사용.
+		 @Contoller => MVC패턴에서 컨트롤러 클래스를 객체로 만들때 사용.
+		 	
+	   @Autowired : autowired 를 지정할 때 사용. 변수이름과 참조하는 bean객체의 id가 같을 때 사용.
+
+	3) 애노테이션 설정 방법
+	
+	  - 맨 밑에 있는 Source 옆의 Namespaces에서 context추가
+	
+	  - <context:annotation-config/> 추가
+
+	  - <context:component-scan base-package="애노테이션할 패키지지정"/> 추가
+
+	  - 해당 자바 클래스에서 애노테이션 표시
+
+4. 웹 전용 방식
+
+    (1) 절차
+
+	1) 설정정보: configuration.xml   =>   applicationContext.xml
+	   
+	   * 서블릿 3.0이상에서는 WEB-INF안에 appication.xml을 지정하고 있다.
+	     즉, 위치와 이름이 지정되어있어서 web.xml으로 변경이 가능하다.
+
+	   * 웹은 자바프로그램으로 앱을 만들 때와 달리 Java Resouce의 package가 아닌 WebContent의 WEB-INF에서 만든다.		
+
+	2) applicationContext.xml을 읽기 위해서 Listener를 만들어야 한다. Project 하나당 Listener는 하나다. 
+	   만드는 방법은 두가지다.
+
+	   - 자바에서 Listener를 생성하기.
+		
+             사진 참고 .png
+
+		<%
+			WebApplicationContext context = 
+				WebApplicationContextUtils.getWebApplicationContext(application);
+	
+		%>
+		
+
+	   - web.xml에서 Listener를 생성하기.
+
+5. JDBC (0818_WebJDBC)
+
+   (1) https://mvnrepository.com/에서 검색창에 ojdbc8을 치고 소스코드를 구한 다음 pom.xml에 붙여넣는다.
+	
+   (2) sql문
+
+	1) jdbcTemplate에서 select는 무조건 List<VO>를 반환한다.
+
+	2) 다른 DB처리를 위해서 DAO는 session에 저장하자.
+
+	3) insert, update, delete는 jdbcTemplate.update()를 사용
+
+    * 안되면 Web-lib에 삽입
+
+
 

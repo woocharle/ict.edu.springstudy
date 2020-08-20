@@ -1,5 +1,6 @@
 package com.ict.edu03;
 
+
 public class MyProcess2 {
 	private String name = "홍길동";
 	private int age = 27 ;
