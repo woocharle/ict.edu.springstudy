@@ -180,3 +180,96 @@ help -> marketplace에서 검색 [검색창에 spring]  -> install 클릭 -> 설
 
 
 
+6. MVC 패턴 [0820_MVC_01]
+
+   (1) Project 생성 및 설정 
+
+	<생성>
+
+	1) New => other => Spring => Spring Legacy Project 경로를 탄 후 next
+
+	2) Project이름을 적은 뒤 아래에 Spring MVC Project클릭 한 후 next
+
+	3) com.회사이름.first [Controll로 씀.]를 적고 finish. 
+
+	4) 우측 하단의 Building workspace를 기다리면 오류가 없어진다.
+
+ 	5) Run on server를 하면 창에서 Hello world!와 그 아래에 시간이 나와야지 정상이다.
+
+	<설정 1 기본>
+
+	1) pom.xml로 들어가서 properties수정 자바버전
+
+	2) 해당 프로젝트에 마우스 오른쪽 버튼 클릭 => properties => Project Facets에서 java 버전 수정, 
+	   우측상단의 Runtimes 클릭해서 tomcat체크, java compiler로 가서 변경된 것 확인. 
+
+	3) Run on server로 돌아가는지 확인 
+
+	4) dependencies에서 보충할 것 보충 
+	
+	<설정 2 web.xml> 
+
+	1) 한글처리: Web.xml에서 다음 코드를 추가.
+
+	    참고: https://gmlwjd9405.github.io/2019/01/01/spring-utf8.html
+
+    	    <init-param> 
+       		<param-name>forceEncoding</param-name> 
+       		<param-value>true</param-value> 
+    	    </init-param> 
+
+	   위의 이 부분은 지워준다.
+
+	2) servlet-mapping 수정
+ 	
+	    <servlet-mapping> <!-- MVC패턴으로 보내는 것. -->
+		<servlet-name>appServlet</servlet-name>
+		<url-pattern>*.do</url-pattern>    <!-- 바꿀것. 확장자가 .do인 경우 servlet-context.xml로 갈 것.-->
+	    </servlet-mapping>
+
+	<설정 3 servlet-context.xml>
+
+	1) 1.Handler
+
+		
+   (2) 기본구조
+
+	1) src/main/java
+
+	   - HomeController: Servlet 역할을 해준다.
+
+
+		@RequestMapping(value = "/", method = RequestMethod.GET)
+		public String home(Locale locale, Model model) {
+			logger.info("Welcome home! The client locale is {}.", locale);
+		
+			Date date = new Date();
+			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+			String formattedDate = dateFormat.format(date);
+		
+			model.addAttribute("serverTime", formattedDate );
+		
+			return "home"[지정할 jsp파일];
+		}
+
+
+	2) web.xml
+
+	3) root-context.xml 다음 servlet-context
+
+   (3) Spring MVC의 수행 흐름 (교재 스프링 퀵 스타트 313p, 314p)	
+    	
+	view에 있는 jsp  => 
+
+   (4) 작성
+
+	* 실행하려면 프로젝트에 Run-on-server로 돌려야한다.
+
+	1) WEB-INF안에 존재하는 파일을 곧바로 Run-on-server로 작동할 수 없다. (보안)
+
+	2) web.xml에서 파일들을 지정해야 된다.
+	
+    (5) root-context에서 DI실행
+
+   (#) Model and View class
