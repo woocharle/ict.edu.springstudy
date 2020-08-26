@@ -127,9 +127,9 @@ help -> marketplace에서 검색 [검색창에 spring]  -> install 클릭 -> 설
 		 	
 	   @Autowired : autowired 를 지정할 때 사용. 변수이름과 참조하는 bean객체의 id가 같을 때 사용.
 
-	3) 애노테이션 설정 방법
+	3) 애노테이션 설정 방법 
 	
-	  - 맨 밑에 있는 Source 옆의 Namespaces에서 context추가
+	  - root-context.xml의 맨 밑에 있는 Source 옆의 Namespaces에서 context추가
 	
 	  - <context:annotation-config/> 추가
 
@@ -229,14 +229,42 @@ help -> marketplace에서 검색 [검색창에 spring]  -> install 클릭 -> 설
 
 	<설정 3 servlet-context.xml>
 
-	1) 1.Handler
+	
+	3) 파일 입출력
 
-		
+	   https://mvnrepository.com/에서 검색창에 cos입력
+
+	   - cos 파일 업로드
+
+		<!-- cos: 업로드 -->
+		<dependency>
+			<groupId>servlets.com</groupId>
+			<artifactId>cos</artifactId>
+			<version>05Nov2002</version>
+		</dependency>
+
+		<!-- 아파치 파일 업로드 -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.4</version>
+		</dependency>
+
+	  - 파일 다운로드
+
+		<!-- 아파치 파일 다운로드 -->
+		<dependency>
+		    <groupId>commons-io</groupId>
+		    <artifactId>commons-io</artifactId>
+		    <version>2.7</version>
+		</dependency>
+
+
    (2) 기본구조
 
 	1) src/main/java
 
-	   - HomeController: Servlet 역할을 해준다.
+	   - HomeController: Servlet 역할을 해준다. (단, Servlet이 아닌 Class이다.)
 
 
 		@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -272,4 +300,55 @@ help -> marketplace에서 검색 [검색창에 spring]  -> install 클릭 -> 설
 	
     (5) root-context에서 DI실행
 
-   (#) Model and View class
+
+7. annotation (0824_MVC04_ ~ )
+
+   (1) 설정 
+
+	1) servlet-context.xml의 애노테이션 지원받으려면 @Controller로 연동한 뒤 직접 메소드를 만들어야 된다.
+
+	2) 인자는 상황에 따라 변한다. 인자에는 value, method=요청방식(GET,POST)방식이 있다.
+
+	3) 형식
+
+
+#. 확장자(url-pattern)을 두 개로 하고 싶은 경우 
+
+  web.xml에 가서 <servlet>...<servlet>과 <servlet-mapping>....</servlet-mapping> 을 복사한뒤
+  servlet-name을 바꾼뒤. url-pattern이름을 정한다.
+
+8. 이미지 
+
+   src -> main -> webapp의 resources안에 넣을 것.
+
+9. DB처리
+
+   (1) Oracle 
+
+	1) WEB-INF에 lib라는 폴더를 만들고 jar파일을 옮겨 붙인다.
+
+	2) pom.xml에서 oracle과 jdbc를 이어주는 dependency를 찾아서 붙인다. 
+
+           주의! version은 맨처음에 설정한 Spring 버전과 맞아야 한다. 
+
+
+   (2) DAO
+
+	1) DI의 applicationContext.xml과 같다.
+
+	2) name과 ref가 같은 경우 autowire
+
+	  ex) 
+		<bean id="dao" class="com.ict.db.DAO">
+			<property name="jdbcTemplate" ref="jdbcTemplate"></property>
+		</bean>		
+		
+		를  <bean id="dao" class="com.ict.db.DAO" autowire="byName"/>로.
+
+	   그래서 DAO 클래스에 객체이름을 ref이름과 같게 해야 된다.
+
+	3) controller에도 DAO클래스를 가진 객체와 그 객체를 받는 setter를 만들어 줘야한다. 
+
+* 실무 tip: 환경설정하는 데 한 달 정도 걸리는 경우가 있다.
+
+	    - DB처리 및 서버 구축 

@@ -63,7 +63,6 @@ public class DAO {
 	}
 	
 	
-	
 	public int getIDU(VO vo, String mth) {
 		int result=0;
 		
