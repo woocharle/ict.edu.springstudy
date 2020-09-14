@@ -1,12 +1,15 @@
 package com.ict.db;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class VO {
 	private String idx, name, subject, content, filename, email, pwd, regdate;
+	private MultipartFile file;
 	
 	public VO() {}
 
 	public VO(String idx, String name, String subject, String content, String filename, String email, String pwd,
-			String regdate) {
+			String regdate, MultipartFile file) {
 		super();
 		this.idx = idx;
 		this.name = name;
@@ -16,6 +19,7 @@ public class VO {
 		this.email = email;
 		this.pwd = pwd;
 		this.regdate = regdate;
+		this.file = file;
 	}
 
 	public String getIdx() {
@@ -81,7 +85,15 @@ public class VO {
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
-	
+
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+
 	
 
 }

@@ -11,9 +11,9 @@
 		table,tr,td{border: 1px solid black; padding: 3px}
 	</style>	
 	<script type="text/javascript">
-		function write_go(f) {
+		function save_go(f) {
 			for (var i = 0; i < f.elements.length; i++) {
-				if(i == 4){continue;}
+				if(i == 4 || i == 5){continue;}
 				if(f.elements[i].value==""){
 
 					alert(f.elements[i].name+"를 입력하세요");
@@ -54,15 +54,17 @@
 					</tr>
 					<tr align="center">
 						<td bgcolor="#99ccff">첨부파일</td>
-						<td><input type="file" name="filename" size="20"></td>
+						<!-- VO의 MultiparFile file; 이므로 -->
+						<td><input type="file" name="file" size="20"></td>
 					</tr>
 					<tr align="center">
 						<td colspan="2">
 							<script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
 						 	<textarea name="content"></textarea>
-                		 	<script>
+                		 	<script >
                         		CKEDITOR.replace( 'content' );
                 			</script>
+                			
 						</td>
 					</tr>
 				</tbody>

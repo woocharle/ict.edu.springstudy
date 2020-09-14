@@ -14,7 +14,6 @@ public class DAO {
 	public DAO() {}
 	
 	public DAO(SqlSessionTemplate sqlSessionTemplate) {
-		super();
 		this.sqlSessionTemplate = sqlSessionTemplate;
 	}
 
@@ -59,7 +58,8 @@ public class DAO {
 		
 		switch (obj) {
 			case "Insert": result = sqlSessionTemplate.insert("insert", vo); break;
-
+			case "Update": result = sqlSessionTemplate.update("update", vo); break;
+			case "Delete": result = sqlSessionTemplate.delete("delete", vo); break;
 		}
 				
 		return result;

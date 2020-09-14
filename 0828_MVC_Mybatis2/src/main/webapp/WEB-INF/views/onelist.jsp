@@ -67,7 +67,7 @@
 							</c:when>
 							<c:otherwise>
 								<td>
-									<img src="/resources/upload/${vo.filename}" style="width: 150px">
+									<img src="../resources/upload/${vo.filename}" style="width: 150px">
 									<a href="down.do?filename=${vo.filename}">${vo.filename}</a>
 								</td>
 							</c:otherwise>
@@ -75,7 +75,7 @@
 					</tr>
 					<tr align="center">
 						<td bgcolor="#99ccff">첨부파일 변경</td>
-						<td><input type="file" name="filename" size="20"></td>
+						<td><input type="file" name="file" size="20"></td>
 					</tr>
 					<tr align="center">
 						<td bgcolor="#99ccff">*비밀번호</td>
@@ -87,7 +87,11 @@
 					</tr>
 					<tr align="center">
 						<td colspan="2">
-							<textarea rows="10" cols="60" name="content" >${vo.content}</textarea>
+							<script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+							<textarea name="content" >${vo.content}</textarea>
+                		 	<script >
+                        		CKEDITOR.replace( 'content' );
+                			</script>							
 						</td>
 					</tr>
 				</tbody>

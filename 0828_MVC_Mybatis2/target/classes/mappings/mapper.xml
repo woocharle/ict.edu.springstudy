@@ -27,9 +27,21 @@
 	
 	<insert id="insert" parameterType="com.ict.db.VO">
 		insert into guestbook2
-		values(guestbook2_seq.nextval)
+		values(guestbook2_seq.nextval, #{name}, #{subject}, #{content}, #{filename}, #{email}, #{pwd}, sysdate)
 	
 	</insert>
+	
+	<update id="update" parameterType="com.ict.db.VO">
+		update guestbook2
+		set name = #{name}, subject = #{subject}, content = #{content}, filename=#{filename}, email = #{email}
+		where idx = #{idx}
+	</update>
+	
+	
+	<delete id="delete" parameterType="com.ict.db.VO">
+		delete from guestbook2
+		where idx = #{idx}
+	</delete>
 	
 	
 	
