@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bbs1_board">
+
+	 <select id="bcount" resultType="int">
+	 	select count(*) from bbs_t
+	 </select>
+	 
+	 <select id="blist" parameterType="Map" resultType="com.ict.db.VO1">
+	 	select * 
+	 		from (select row_number() over() as r_no, a.* 
+	 			from (select * from bbs_t order by b_idx) as a ) as tb 
+	 	where tb.r_no between #{begin} and #{end}
+	 </select>
+	 
+	 <select id="bonelist" parameterType="String" resultType="com.ict.db.VO1">
+	 	select * from bbs_t
+	 	where b_idx = #{b_idx}
+	 </select>
+	 
+	 <insert id="binsert" parameterType="com.ict.db.VO1">
+	 	insert into bbs_t 
+	 	values (NEXT VALUE FOR bbs_t_seq, #{subject}, #{writer}, #{content}, #{filename}, #{pwd}, sysdate(), 0)
+	 </insert>
+	 
+	 <update id="bupdate" parameterType="com.ict.db.VO1">
+	 	update bbs_t
+	 	set subject= #{subject}, content=#{content}, filename=#{filename}
+	 	where b_idx=#{b_idx}
+	 </update>
+	 
+	 <delete id="bdelete" parameterType="com.ict.db.VO1">
+	 	delete from bbs_t
+	 	where b_idx=#{b_idx}
+	 </delete>
+	
+	 <update id="hitup" parameterType="String">
+	 	update bbs_t
+	 	set hit = hit + 1
+	 	where b_idx = #{b_idx}
+	 </update>
+	 
+</mapper>

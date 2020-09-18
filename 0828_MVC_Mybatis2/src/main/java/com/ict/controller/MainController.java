@@ -27,15 +27,21 @@ import com.ict.model.Paging;
 public class MainController {
 	@Autowired
 	private DAO dao;
-
+	private Paging paging;
+	
 	public void setDao(DAO dao) {
 		this.dao = dao;
 	}
 	
+	public void setPaging(Paging paging) {
+		this.paging = paging;
+	}
+
+
 	@RequestMapping(value="list.do", method=RequestMethod.GET)
 	public ModelAndView list_cmd(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
-		Paging paging = new Paging();
+		paging = new Paging();
 		
 		int su = dao.getCount();
 		paging.setTotalRecord(su);
@@ -121,12 +127,11 @@ public class MainController {
 	@RequestMapping(value="onelist.do", method = RequestMethod.GET)
 	public ModelAndView onelist_cmd(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
-		
 		String idx = request.getParameter("idx");
 		VO vo = dao.getOnelist(idx);
 				
 		request.getSession().setAttribute("vo", vo);
-		
+		mv.addObject("cPage", request.getParameter("cPage"));
 		mv.setViewName("onelist");
 		
 		return mv;
@@ -236,7 +241,4 @@ public class MainController {
 		
 	}
 		
-	
-	
-	
 }

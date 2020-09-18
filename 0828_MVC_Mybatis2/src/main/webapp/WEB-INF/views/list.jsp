@@ -34,7 +34,7 @@
 						 <tr>
 						 	<td>${((paging.nowPage-1)*paging.numPerpage + vs.index)+1}</td>
 							<td>${k.name}</td>
-							<td><a href="onelist.do?idx=${k.idx}">${k.subject}</a></td>
+							<td><a href="onelist.do?idx=${k.idx}&cPage=${paging.nowPage}">${k.subject}</a></td>
 							<td>${k.regdate.substring(0,10)}</td>
 						 </tr>
 						</c:forEach>

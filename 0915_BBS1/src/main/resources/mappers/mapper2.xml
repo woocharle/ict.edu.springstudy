@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="bbs1_comment">
+ 
+ 	<select id="clist" parameterType="String" resultType="com.ict.db.VO2">
+ 		select * from comment_t
+ 		where b_idx=#{b_idx}
+ 	</select>
+ 
+ 	<insert id="cinsert" parameterType="com.ict.db.VO2">
+ 		insert into comment_t
+ 		values (NEXT VALUE FOR comment_t_seq, #{writer}, #{content}, #{pwd}, sysdate(), #{b_idx});
+ 	</insert>
+ 
+ 	<update id="cupdate">
+ 		update comment_t
+ 		set content=#{content}
+ 		where c_idx=#{c_idx}
+ 	</update>
+ 
+ 	<delete id="cdelete" parameterType="com.ict.db.VO2">
+ 		delete from comment_t
+ 		where c_idx=#{c_idx}
+ 	</delete>
+ 
+ </mapper>

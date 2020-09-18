@@ -43,7 +43,7 @@
 <body>
 	<div align="center">
 		<h2>방명록: 추가</h2>
-		<p>[<a href="list.do"> 목록으로 가기 </a>]</p>
+		<p>[<a href="list.do?cPage=${cPage}"> 목록으로 가기 </a>]</p>
 		<form method="post" enctype="multipart/form-data">
 			<table>
 				<tbody>
