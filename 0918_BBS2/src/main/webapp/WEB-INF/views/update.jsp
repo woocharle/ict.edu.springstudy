@@ -22,7 +22,7 @@ th {
 <script type="text/javascript">
 	function sendData(f) {	
 		if("${vo.pwd}" == f.pwd.value){
-			f.action="/MyController?cmd=update"
+			f.action="update_ok.do"
 			f.submit();
 		}else{
 			alert("비밀번호가 틀립니다.");
@@ -32,9 +32,8 @@ th {
 	
 	}
 	
-	function list_go(f) {	
-		f.action="/MyController?cmd=list"
-		f.submit();
+	function list_go() {	
+		location.href="list.do?cPage="+f.cPage.value;
 	}
 	
 </script>
@@ -64,7 +63,7 @@ th {
 				</tr>
 				<tr>
 					<th>첨부파일</th>
-					<td align="left"><input type="file" name="filename">${vo.filename}</td>
+					<td align="left"><input type="file" name="file"></td>
 				</tr>
 				<tr>
 					<th>비밀번호</th>
@@ -72,12 +71,11 @@ th {
 				</tr>
 				<tr>
 					<td colspan="2">
-					<input type="button" value="수정" onclick="sendData(this.form)" /> 
-					<input type="button" value="목록" onclick="list_go(this.form)" /> 
-					<input type="reset" value="취소" />
-					<input type="hidden" name="f_name" value="${vo.filename}" />
-					<input type="hidden" name="idx" value="${vo.idx}" />
-					<input type="hidden" name="cPage" value="${cPage}" />
+						<input type="button" value="수정" onclick="sendData(this.form)" /> 
+						<button onclick="list_go()"> 목록 </button> 
+						<input type="reset" value="취소" />
+						<input type="hidden" name="f_name" value="${vo.filename}" />
+						<input type="hidden" name="idx" value="${vo.idx}" />
 					</td>
 				</tr>
 	            </tbody>

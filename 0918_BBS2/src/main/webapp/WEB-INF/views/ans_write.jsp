@@ -20,7 +20,9 @@
 			}
 		h2{text-align: center;}
 		table { margin: 0px auto;}
+		
 	</style>
+	
 <script type="text/javascript">
 	function sendData(f) {
 		for (var i = 0; i < f.elements.length; i++) {
@@ -32,12 +34,12 @@
 				return;//수행 중단
 			}
 		}
-		f.action="/MyController?cmd=ans_write"
+		f.action="ans_write.do"
 		f.submit();
 	}
 	
 	function list_go(f) {
-		f.action = "/MyController?cmd=list" ;
+		f.action = "list.do?cPage="+f.cPage.value ;
 		f.submit();				
 	}
 
@@ -68,7 +70,7 @@
 				</tr>
 				<tr>
 					<th>첨부파일</th>
-					<td align="left"><input type="file" name="filename"></td>
+					<td align="left"><input type="file" name="file"></td>
 				</tr>
 				<tr>
 					<th>비밀번호</th>

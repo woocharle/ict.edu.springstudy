@@ -6,7 +6,7 @@ public class Paging {
 	private int totalRecord = 0;
 	private int totalPage = 0;
 	private int totalBlock = 0;
-	private int numPerpage = 6;
+	private int numPerpage = 10;
 	private int pagePerBlock = 3;
 	
 	private int begin = 0;

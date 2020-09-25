@@ -22,7 +22,7 @@
 	<script type="text/javascript">
 		function sendData(f) {	
 			if("${vo.pwd}" == f.pwd.value){
-				f.action="/MyController?cmd=delete"
+				f.action="delete_ok.do";
 				f.submit();
 			}else{
 				alert("비밀번호가 틀립니다.");
@@ -33,7 +33,7 @@
 		}
 		
 		function list_go(f) {	
-			f.action="/MyController?cmd=list"
+			f.action="list.do?cPage="+f.cPage.value;
 			f.submit();
 		}
 	</script>
@@ -52,6 +52,7 @@
 				<input type="button" value="삭제" onclick="sendData(this.form)" /> 
 				<input type="button" value="목록" onclick="list_go(this.form)" /> 
 				<input type="hidden" name="idx" value="${vo.idx}" />
+				<input type="hidden" name="cPage" value="${cPage}" />
 				<input type="reset" value="취소" />
 				</td>
 			</tr>

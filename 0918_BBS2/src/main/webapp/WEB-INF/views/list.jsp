@@ -24,7 +24,7 @@
 	</style>
 	<script type="text/javascript">
 		function write_go(){
-			location.href = "/MyController?cmd=write_0";
+			location.href = "write.do";
 		}
 	
 	</script>
@@ -58,7 +58,7 @@
 								<c:forEach begin="1" end="${k.step}">
 									&nbsp;&nbsp;[RE]
 								</c:forEach>
-								<a href="/MyController?cmd=onelist&idx=${k.idx}&cPage=${paging.nowPage}">${k.title}</a>
+								<a href="onelist.do?idx=${k.idx}&cPage=${paging.nowPage}">${k.title}</a>
 							</td>
 							<td>${k.writer}</td>
 							<td>${k.regdate.substring(0,10)}</td>
@@ -77,7 +77,7 @@
 							<span style="color:lightgray;">이전으로&nbsp;&nbsp;</span>						
 						</c:when>
 						<c:otherwise>
-							<a href="/MyController?cmd=list&cPage=${paging.beginBlock-paging.pagePerBlock}"><span style="color:black;">이전으로&nbsp;&nbsp;</span></a>
+							<a href="list.do?&cPage=${paging.beginBlock-paging.pagePerBlock}"><span style="color:black;">이전으로&nbsp;&nbsp;</span></a>
 						</c:otherwise>
 					</c:choose>
 					
@@ -89,7 +89,7 @@
 								<font style="font-weight: bold;">${k}</font>
 							</c:when>
 							<c:otherwise>
-								<a href="/MyController?cmd=list&cPage=${k}"><font style="font-weight: bold; color: tomato">${k}</font></a>
+								<a href="list.do?&cPage=${k}"><font style="font-weight: bold; color: tomato">${k}</font></a>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
@@ -100,7 +100,7 @@
 							<span style="color:lightgray;">&nbsp;&nbsp;다음으로</span>						
 						</c:when>
 						<c:otherwise>
-							<a href="/MyController?cmd=list&cPage=${paging.beginBlock+paging.pagePerBlock}"><span style="color:black;">&nbsp;&nbsp;다음으로</span></a>
+							<a href="list.do?&cPage=${paging.beginBlock+paging.pagePerBlock}"><span style="color:black;">&nbsp;&nbsp;다음으로</span></a>
 						</c:otherwise>
 					</c:choose>					
 				</td>

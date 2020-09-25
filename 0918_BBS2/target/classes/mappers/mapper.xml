@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board_bbs2">
+	
+	<select id="count1" resultType="int">
+		select count(*) from board
+	</select>
+
+	<select id="list" parameterType="Map" resultType="com.ict.db.VO">
+		select * from
+			(select rownum r_num, a.* from(
+				select * from board order by groups desc, lev asc) a)
+		where r_num between #{begin} and #{end} 
+	</select>
+
+	<select id="onelist"  parameterType="String" resultType="com.ict.db.VO" >
+		select * from board 
+		where idx = #{idx} 
+	</select>
+
+	<update id="hitup" parameterType="String">
+		update board
+		set hit = hit + 1
+		where idx= #{idx} 
+	</update>
+	
+	<update id="lev_up" parameterType="map">
+		update board
+		set lev = lev + 1
+		where groups = #{groups} and lev >= #{lev}
+	</update>
+
+	<insert id="insert1" parameterType="com.ict.db.VO">
+		insert into board
+		values (board_seq.nextval, #{writer}, #{title}, #{content}, #{pwd},0, group_seq.nextval, 0, 0, sysdate, #{filename}) 
+	</insert>	
+
+	<insert id="insert2" parameterType="com.ict.db.VO">
+		insert into board
+		values (board_seq.nextval, #{writer}, #{title}, #{content}, #{pwd},0, #{groups}, #{step}, #{lev} ,sysdate, #{filename})
+	</insert>
+	
+	<update id="update" parameterType="com.ict.db.VO">
+		update board
+		set writer=#{writer}, title=#{title}, content=#{content}, filename=#{filename}
+		where idx=#{idx} 
+	</update>	
+	
+	<delete id="delete" parameterType="String">	
+		delete from board where idx=#{idx} 
+	</delete>
+	
+</mapper>
