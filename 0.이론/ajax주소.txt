@@ -1,0 +1,8 @@
+기상청 주소
+http://www.kma.go.kr/XML/weather/sfc_web_map.xml
+
+기상청 이미지 주소
+img src='http://www.kma.go.kr/images/icon/NW/NB
+
+도서실 주소
+http://openapi.seoul.go.kr:8088/sample/json/SeoulLibraryTime/1/5/

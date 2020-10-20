@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="card_ticket">
+ 
+ 	<insert id="cardinsert" parameterType="com.ict.db.VO">
+ 		insert into card(consumerid, amount)
+ 		values(#{consumerid}, #{amount})
+ 	</insert>
+ 	
+ 	<insert id="ticketinsert" parameterType="com.ict.db.VO">
+ 		insert into ticket(consumerid, countnum)
+ 		values(#{consumerid}, #{countnum})
+ 	</insert>
+ 
+ 
+ </mapper>
